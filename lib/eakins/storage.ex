@@ -43,9 +43,6 @@ defmodule Eakins.Storage do
   end
 
   defp storage_backend do
-    :eakins
-    |> Application.get_all_env()
-    |> Keyword.get(Eakins, [])
-    |> Keyword.get(:storage_module, Eakins.Storage.Local)
+    Application.get_env(:eakins, :storage_module, Eakins.Storage.Local)
   end
 end

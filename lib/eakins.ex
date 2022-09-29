@@ -29,6 +29,28 @@ defmodule Eakins do
   Your schema is now has an avatar image map, where you can store multiple images under
   different keys. See `Eakins.Schema` for more information on what you can do with the field and
   see `Eakins.Image.Display` for how to generate URLs with the field's value.
+
+  # Configuration
+
+  Eakins accepts the following application configuration options:
+
+
+    `imgproxy_host`: *(Required)* The hostname of your imgproxy instance
+
+    `imgproxy_key`:  *(Optional)* The imgproxy secret key used for signing URLs.
+
+    `imgproxy_salt`: *(Optional)* The signing salt used for signing URLs.
+
+    `imgproxy_scheme` *(Optional)* The scheme used in your urls. Defaults to https
+
+  An example configuration for local development might look like this:
+  ```
+  # dev.exs
+  import Config
+  config :eakins,
+    imgproxy_host: "127.0.0.1",
+    imgproxy_scheme: "http"
+  ```
   """
 
   @typedoc """

@@ -10,6 +10,6 @@ config :eakins, Eakins.Repo,
   pool_size: 10,
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :eakins, Eakins, imgproxy_host: "proxy.eakins.test"
+config :eakins, imgproxy_host: "proxy.eakins.test"
 
 config :logger, level: :error

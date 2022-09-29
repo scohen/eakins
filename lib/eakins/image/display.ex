@@ -117,27 +117,23 @@ defmodule Eakins.Image.Display do
 
   defp imgproxy_host do
     :eakins
-    |> Application.get_env(Eakins, [])
+    |> Application.get_all_env()
     |> Keyword.fetch!(:imgproxy_host)
   end
 
   defp imgproxy_key do
     :eakins
-    |> Application.get_env(Eakins, [])
-    |> Keyword.get(:imgproxy_key, "")
+    |> Application.get_env(:imgproxy_key, "")
     |> Base.decode16!(case: :lower)
   end
 
   defp imgproxy_salt do
     :eakins
-    |> Application.get_env(Eakins, [])
-    |> Keyword.get(:imgproxy_salt, "")
+    |> Application.get_env(:imgproxy_salt, "")
     |> Base.decode16!(case: :lower)
   end
 
-  def imgproxy_scheme do
-    :eakins
-    |> Application.get_env(Eakins, [])
-    |> Keyword.get(:imgproxy_scheme, "https")
+  defp imgproxy_scheme do
+    Application.get_env(:eakins, :imgproxy_scheme, "https")
   end
 end
