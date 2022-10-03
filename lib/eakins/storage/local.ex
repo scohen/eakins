@@ -3,20 +3,22 @@ defmodule Eakins.Storage.Local do
   Development-only local storage for image uploads.
   """
   alias Eakins.{Image, Storage}
+  require Config
 
   @behaviour Storage
 
-  @env Mix.env()
-
   def storage_root do
-    storage_root_for(@env)
+    :eakins
+    |> Application.get_env(:env, :prod)
+    |> storage_root_for()
   end
 
-  if @env == :test do
-    @impl Storage
-    def delete_all do
-      storage_root()
-      |> File.rm_rf()
+  @impl Storage
+  def delete_all do
+    if Application.get_env(:eakins, :env, :prod) == :test do
+      File.rm_rf(storage_root())
+    else
+      raise "delete_all is not supported in this environment"
     end
   end
 
@@ -79,11 +81,8 @@ defmodule Eakins.Storage.Local do
   end
 
   defp storage_root_for(:dev) do
-    [
-      Application.app_dir(:eakins),
-      "../../../../",
-      "docker/imgproxy/uploads"
-    ]
+    :eakins
+    |> Application.app_dir(:upload_directory)
     |> Path.join()
     |> Path.expand()
   end
