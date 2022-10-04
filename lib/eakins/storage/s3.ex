@@ -10,10 +10,7 @@ defmodule Eakins.Storage.S3 do
   @behaviour Storage
 
   def bucket do
-    :eakins
-    |> Application.get_all_env()
-    |> Keyword.get(Eakins, [])
-    |> Keyword.get(:s3_upload_bucket)
+    Application.get_env(:eakins, :s3_upload_bucket)
   end
 
   @impl Storage

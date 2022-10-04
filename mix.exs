@@ -4,7 +4,7 @@ defmodule Eakins.MixProject do
   def project do
     [
       app: :eakins,
-      version: "0.0.3",
+      version: "0.0.4",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),

@@ -116,9 +116,7 @@ defmodule Eakins.Image.Display do
   end
 
   defp imgproxy_host do
-    :eakins
-    |> Application.get_all_env()
-    |> Keyword.fetch!(:imgproxy_host)
+    Application.get_env(:eakins, :imgproxy_host)
   end
 
   defp imgproxy_key do
