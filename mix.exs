@@ -4,7 +4,7 @@ defmodule Eakins.MixProject do
   def project do
     [
       app: :eakins,
-      version: "0.0.4",
+      version: "0.0.5",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -56,19 +56,19 @@ defmodule Eakins.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ecto, "~> 3.9.0"},
-      {:ecto_sql, "~> 3.9.0"},
-      {:ex_aws, "~> 2.4.0", optional: true},
-      {:ex_aws_s3, "~> 2.3.0", optional: true},
-      {:gettext, "~> 0.20.0"},
-      {:inflex, "~> 2.1.0"},
-      {:mimerl, "~> 1.2.0"},
-      {:plug, "~> 1.13.0"},
+      {:ecto, "~> 3.9"},
+      {:ecto_sql, "~> 3.9"},
+      {:ex_aws, "~> 2.4", optional: true},
+      {:ex_aws_s3, "~> 2.3", optional: true},
+      {:gettext, "~> 0.20"},
+      {:inflex, "~> 2.1"},
+      {:mimerl, "~> 1.2"},
+      {:plug, "~> 1.13"},
       {:ex_doc, "~> 0.28.5", runtime: false, only: :dev},
-      {:jason, "~> 1.4.0", optional: true, only: [:test]},
-      {:patch, "~> 0.12.0", only: [:test]},
-      {:postgrex, "~> 0.16.0", only: [:test]},
-      {:stream_data, "~> 0.5.0", only: [:test]}
+      {:jason, "~> 1.4", optional: true, only: [:test]},
+      {:patch, "~> 0.12", only: [:test]},
+      {:postgrex, "~> 0.16", only: [:test]},
+      {:stream_data, "~> 0.5", only: [:test]}
     ]
   end
 end
