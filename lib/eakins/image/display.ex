@@ -76,17 +76,23 @@ defmodule Eakins.Image.Display do
     encoded_source_url = Base.url_encode64(source_url, padding: false) <> extension
     imgproxy_gravity = Map.fetch!(@imgproxy_gravity_map, gravity)
 
+    pipeline_opts =
+      [
+        # resizing
+        [:rs, type, width, height, :t, :t],
+        # gravity
+        [:g, imgproxy_gravity]
+      ]
+      |> List.flatten()
+      |> Enum.map_join(":", &to_string/1)
+
     path =
       [
         "",
-        type,
-        width,
-        height,
-        imgproxy_gravity,
-        1,
+        pipeline_opts,
         encoded_source_url
       ]
-      |> Enum.map_join("/", &to_string/1)
+      |> Enum.join("/")
 
     sig = sign(path)
     imgproxy_scheme() <> "://" <> imgproxy_host() <> "/" <> sig <> path
